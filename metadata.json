@@ -1,0 +1,6 @@
+{
+  "name": "Internix",
+  "description": "Explore practical online programs designed to help students learn, build and develop project experience.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
