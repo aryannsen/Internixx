@@ -400,6 +400,98 @@ export function animateProgramCards(container: HTMLElement | null) {
 }
 
 /**
+ * Mentor Section Entrance Animation:
+ * 1. Heading fades in + moves upward 20px
+ * 2. Subtitle follows with 100ms delay
+ * 3. Cards reveal sequentially from left to right (stagger: 0.08–0.12s, duration: 0.6s, cubic-bezier ease-out)
+ */
+export function animateMentorsSection(container: HTMLElement | null) {
+  if (!container || isReducedMotion()) return;
+
+  const section = container.querySelector<HTMLElement>('#mentors-section');
+  if (!section) return;
+
+  const eyebrow = section.querySelector<HTMLElement>('.mentor-eyebrow');
+  const heading = section.querySelector<HTMLElement>('.mentor-heading');
+  const subtitle = section.querySelector<HTMLElement>('.mentor-subtitle');
+  const trustLabel = section.querySelector<HTMLElement>('.mentor-trust-label');
+  const cards = section.querySelectorAll<HTMLElement>('.mentor-card-item');
+  const cta = section.querySelector<HTMLElement>('.mentor-cta-bottom');
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: section,
+      start: 'top 85%',
+      toggleActions: 'play none none none',
+      once: true,
+    },
+  });
+
+  if (eyebrow) {
+    tl.fromTo(
+      eyebrow,
+      { opacity: 0, y: 15 },
+      { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }
+    );
+  }
+
+  if (heading) {
+    tl.fromTo(
+      heading,
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 0.65, ease: 'power3.out' },
+      '-=0.35'
+    );
+  }
+
+  if (subtitle) {
+    tl.fromTo(
+      subtitle,
+      { opacity: 0, y: 15 },
+      { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' },
+      '+=0.1' // 100ms delay after heading
+    );
+  }
+
+  if (trustLabel) {
+    tl.fromTo(
+      trustLabel,
+      { opacity: 0, y: 10 },
+      { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' },
+      '-=0.3'
+    );
+  }
+
+  if (cards.length) {
+    tl.fromTo(
+      cards,
+      { opacity: 0, y: 24, scale: 0.98 },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.62,
+        stagger: 0.09,
+        ease: 'power3.out',
+        clearProps: 'transform',
+      },
+      '-=0.3'
+    );
+  }
+
+  if (cta) {
+    tl.fromTo(
+      cta,
+      { opacity: 0, y: 10 },
+      { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' },
+      '-=0.2'
+    );
+  }
+
+  return tl;
+}
+
+/**
  * Setup Desktop-Only Card Hover Interaction
  */
 export function setupDesktopCardHover(card: HTMLElement) {

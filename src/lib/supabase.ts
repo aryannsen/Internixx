@@ -8,6 +8,7 @@ export const supabase = (supabaseUrl && supabaseAnonKey)
   : null;
 
 export const BUCKET_NAME = 'student-photos';
+export const MENTORS_BUCKET_NAME = 'mentor-photos';
 
 /**
  * Returns the public Supabase Storage URL for a given student photo filename.
@@ -36,4 +37,36 @@ export function getStudentPhotoUrl(filename: string): string {
 
   // Fallback if environment variable is pending configuration
   return `/storage/v1/object/public/${BUCKET_NAME}/${cleanFilename}`;
+}
+
+/**
+ * Resolves mentor image URL supporting local public assets, remote URLs, or Supabase Storage.
+ */
+export function getMentorImageUrl(imagePathOrFilename: string): string {
+  if (!imagePathOrFilename) return '';
+  
+  // If already absolute HTTP URL or local root path (e.g. /mentors/...)
+  if (
+    imagePathOrFilename.startsWith('http://') ||
+    imagePathOrFilename.startsWith('https://') ||
+    imagePathOrFilename.startsWith('/')
+  ) {
+    return imagePathOrFilename;
+  }
+
+  const cleanFilename = imagePathOrFilename.split('/').pop() || imagePathOrFilename;
+
+  if (supabase) {
+    const { data } = supabase.storage.from(MENTORS_BUCKET_NAME).getPublicUrl(cleanFilename);
+    if (data?.publicUrl) {
+      return data.publicUrl;
+    }
+  }
+
+  if (supabaseUrl) {
+    const baseUrl = supabaseUrl.replace(/\/+$/, '');
+    return `${baseUrl}/storage/v1/object/public/${MENTORS_BUCKET_NAME}/${cleanFilename}`;
+  }
+
+  return `/mentors/${cleanFilename}`;
 }

@@ -46,3 +46,16 @@ export interface HowItWorksStep {
   details: string[];
   iconName: string;
 }
+
+export interface Mentor {
+  id: string;
+  name: string;
+  role: string;
+  organization: string;
+  image: string;
+  badge?: string;
+  companyName: string;
+  companyLogoType: 'microsoft' | 'iit-delhi' | 'iit-madras' | 'scaler' | 'google' | 'amazon' | 'custom';
+  customLogoUrl?: string;
+  bio?: string;
+}
