@@ -4,7 +4,7 @@ import { SectionHeading } from '../components/ui/SectionHeading';
 import { FAQAccordion } from '../components/ui/FAQAccordion';
 import { CTASection } from '../components/sections/CTASection';
 import { FAQ_DATA } from '../data/faq';
-import { Search, HelpCircle, Phone } from 'lucide-react';
+import { Search, HelpCircle, Mail } from 'lucide-react';
 import { SITE_CONFIG } from '../config/site';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
@@ -139,11 +139,11 @@ export const FAQPage: React.FC = () => {
                 </p>
               </div>
               <a
-                href={`tel:${SITE_CONFIG.contactNumber}`}
-                className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#0048D9] bg-white border border-[#E2E8F0] hover:border-[#0048D9] px-4 py-2 rounded-xl transition-colors shrink-0"
+                href={`mailto:${SITE_CONFIG.contactEmail}`}
+                className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#0048D9] bg-white border border-[#E2E8F0] hover:border-[#0048D9] hover:bg-[#F8FAFC] px-4 py-2.5 rounded-xl transition-colors shrink-0 shadow-2xs group"
               >
-                <Phone className="w-3.5 h-3.5" />
-                <span>{SITE_CONFIG.contactNumber}</span>
+                <Mail className="w-3.5 h-3.5 text-[#0048D9] group-hover:scale-110 transition-transform" />
+                <span>{SITE_CONFIG.contactEmail}</span>
               </a>
             </div>
           </div>

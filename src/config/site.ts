@@ -11,11 +11,7 @@ export const SITE_CONFIG = {
   tagline: "Build skills. Gain practical experience.",
   supportingMessage: "Project-based online internship programs designed to help students learn, build and grow.",
   description: "Internix is a modern student-focused platform offering structured online project and learning programs.",
-  founder: "Aryan",
-  founderTitle: "Founder, Internix",
-  contactNumber: "7206510712",
-  instagram: "aryannsen",
-  instagramUrl: "https://instagram.com/aryannsen",
+  contactEmail: "internnix@gmail.com",
   communicationChannel: "Official Internix Student Portal & Discord/Slack workspace",
   cohortStatus: "Applications Open for Upcoming Cohort",
   navLinks: [

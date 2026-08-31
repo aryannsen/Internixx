@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { SITE_CONFIG, APPLICATION_FORM_URL } from '../../config/site';
 import { useRouter } from '../../context/RouterContext';
 import { BrandLogo } from '../ui/BrandMark';
-import { CheckCircle2, Phone, ShieldCheck, Instagram } from 'lucide-react';
+import { CheckCircle2, Mail, ShieldCheck } from 'lucide-react';
 import { animateFooter } from '../../lib/motionSystem';
 
 export const Footer: React.FC = () => {
@@ -52,33 +52,16 @@ export const Footer: React.FC = () => {
             </h3>
             <div className="space-y-3">
               <div>
-                <p className="font-semibold text-sm text-white">Aryan</p>
-                <p className="text-xs text-[#94A3B8] mt-0.5">Founder, Internix</p>
+                <p className="font-semibold text-sm text-white">Internix</p>
+                <p className="text-xs text-[#94A3B8] mt-0.5">Student Programs</p>
               </div>
               <div className="pt-1">
-                <span className="text-[11px] font-semibold text-[#64748B] uppercase tracking-wider block mb-1">
-                  WhatsApp / Direct
-                </span>
                 <a
-                  href={`tel:${SITE_CONFIG.contactNumber}`}
-                  className="text-sm font-semibold text-[#60A5FA] hover:text-[#93C5FD] transition-colors inline-flex items-center gap-1.5"
+                  href={`mailto:${SITE_CONFIG.contactEmail}`}
+                  className="text-sm font-semibold text-[#60A5FA] hover:text-[#93C5FD] transition-colors inline-flex items-center gap-2 group"
                 >
-                  <Phone className="w-3.5 h-3.5" />
-                  <span>{SITE_CONFIG.contactNumber}</span>
-                </a>
-              </div>
-              <div className="pt-1">
-                <span className="text-[11px] font-semibold text-[#64748B] uppercase tracking-wider block mb-1.5">
-                  Instagram
-                </span>
-                <a
-                  href={SITE_CONFIG.instagramUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Instagram"
-                  className="w-8 h-8 rounded-lg bg-[#1E293B] hover:bg-[#F472B6]/15 text-[#F472B6] hover:text-[#F9A8D4] border border-[#334155]/60 hover:border-[#F472B6]/40 transition-colors inline-flex items-center justify-center cursor-pointer"
-                >
-                  <Instagram className="w-4 h-4" />
+                  <Mail className="w-4 h-4 text-[#60A5FA] group-hover:text-[#93C5FD] transition-colors shrink-0" />
+                  <span className="break-all">{SITE_CONFIG.contactEmail}</span>
                 </a>
               </div>
             </div>

@@ -121,8 +121,8 @@ export const VerifyPage: React.FC = () => {
                       </p>
                       <p className="mt-2 text-xs text-[#64748B]">
                         Need immediate manual verification for an academic institution or employer? Contact us at{' '}
-                        <a href={`tel:${SITE_CONFIG.contactNumber}`} className="text-[#0048D9] underline font-bold">
-                          {SITE_CONFIG.contactNumber}
+                        <a href={`mailto:${SITE_CONFIG.contactEmail}`} className="text-[#0048D9] hover:underline font-bold">
+                          {SITE_CONFIG.contactEmail}
                         </a>.
                       </p>
                     </div>
