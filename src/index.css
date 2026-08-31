@@ -125,6 +125,20 @@
 }
 
 /* Utilities */
+@keyframes avatarFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-2.5px);
+  }
+}
+
+.animate-avatar-float {
+  animation: avatarFloat 5.5s ease-in-out infinite;
+  will-change: transform;
+}
+
 .beam-travel-anim {
   stroke-dasharray: 60 140;
   animation: beamTravel 3.6s ease-in-out infinite;

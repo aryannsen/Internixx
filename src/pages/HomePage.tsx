@@ -7,7 +7,6 @@ import { ProgramCard } from '../components/programs/ProgramCard';
 import { HeroOrbitalGraphic } from '../components/ui/HeroOrbitalGraphic';
 import { TrustCollegeAvatars } from '../components/ui/TrustCollegeAvatars';
 import { TrustMetricsBento } from '../components/ui/TrustMetricsBento';
-import { EducatorsMentorsSection } from '../components/sections/EducatorsMentorsSection';
 import { HowItWorksRoadmap } from '../components/sections/HowItWorksRoadmap';
 import { PremiumFinalCTA } from '../components/sections/PremiumFinalCTA';
 import {
@@ -16,7 +15,6 @@ import {
   animateHeroScrollTrigger,
   animateProgramCards,
   animateSectionHeaders,
-  animateMentorsSection,
   setupDesktopPointerParallax,
 } from '../lib/motionSystem';
 
@@ -36,7 +34,6 @@ export const HomePage: React.FC = () => {
     animateHeroScrollTrigger(root);
     animateSectionHeaders(root);
     animateProgramCards(root);
-    animateMentorsSection(root);
   }, []);
 
   // Desktop subtle pointer parallax on hero badge
@@ -223,11 +220,6 @@ export const HomePage: React.FC = () => {
           </div>
         </div>
       </section>
-
-      {/* ========================================================================= */}
-      {/* SECTION 2.5: TRUSTED BY EDUCATORS & INDUSTRY MENTORS                      */}
-      {/* ========================================================================= */}
-      <EducatorsMentorsSection />
 
       {/* ========================================================================= */}
       {/* SECTION 3: HOW IT WORKS (Connected 5-Step Roadmap)                         */}

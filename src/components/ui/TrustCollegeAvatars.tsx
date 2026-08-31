@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { MentorAvatarStack } from './MentorAvatarStack';
 
 interface CollegeLogo {
   id: string;
@@ -154,6 +155,13 @@ export const TrustCollegeAvatars: React.FC = () => {
             </div>
           ))}
         </div>
+      </div>
+
+      {/* ========================================================================= */}
+      {/* COMPACT TRUST LAYER: Educators & Industry Mentors Avatar Stack            */}
+      {/* ========================================================================= */}
+      <div className="pt-2 sm:pt-2.5 mt-0.5 border-t border-[#F1F5F9] w-full">
+        <MentorAvatarStack />
       </div>
     </div>
   );
