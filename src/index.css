@@ -146,6 +146,23 @@
   animation: ambientBgDrift 30s ease-in-out infinite alternate;
 }
 
+/* Continuous Infinite Marquee for Mobile College Logos */
+@keyframes infiniteLogoMarquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-infinite-marquee {
+  display: flex;
+  width: max-content;
+  animation: infiniteLogoMarquee 30s linear infinite;
+  will-change: transform;
+}
+
 /* Subtle hairline borders & studio card depth */
 .studio-card-border {
   border: 1px solid #E2E8F0;

@@ -1,49 +1,158 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-// Authentic collegiate seal SVGs inspired by top technical universities (IIT, NIT, DU, BITS, IISc, VIT)
-const CollegeSeal: React.FC<{ color: string; label: string }> = ({ color, label }) => {
-  return (
-    <div
-      title={label}
-      className="relative w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-[#CBD5E1] bg-white flex items-center justify-center p-1 shadow-2xs hover:scale-110 transition-transform duration-200"
-    >
-      <svg viewBox="0 0 32 32" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="16" cy="16" r="14" stroke={color} strokeWidth="1.5" strokeDasharray="2 1.5" />
-        <circle cx="16" cy="16" r="11" stroke={color} strokeWidth="0.75" />
-        <path
-          d="M16 8L18.5 13H23.5L19.5 16.5L21 21.5L16 18.5L11 21.5L12.5 16.5L8.5 13H13.5L16 8Z"
-          fill={color}
-          fillOpacity="0.85"
-        />
-        <circle cx="16" cy="16" r="3" fill="white" />
-      </svg>
-    </div>
-  );
-};
+interface CollegeLogo {
+  id: string;
+  name: string;
+  shortName: string;
+  logoSrc: string;
+  imgClassName?: string;
+}
+
+const COLLEGES: CollegeLogo[] = [
+  {
+    id: 'chandigarh',
+    name: 'Chandigarh University',
+    shortName: 'Chandigarh Univ',
+    logoSrc: '/colleges/chandigarh.png',
+    imgClassName: 'max-h-10 sm:max-h-12 w-auto object-contain',
+  },
+  {
+    id: 'manipal',
+    name: 'Manipal University',
+    shortName: 'Manipal',
+    logoSrc: '/colleges/manipal.png',
+    imgClassName: 'max-h-10 sm:max-h-12 w-auto object-contain',
+  },
+  {
+    id: 'bits-pilani',
+    name: 'BITS Pilani',
+    shortName: 'BITS Pilani',
+    logoSrc: '/colleges/bits-pilani.svg',
+    imgClassName: 'max-h-9 sm:max-h-11 w-auto object-contain',
+  },
+  {
+    id: 'vit',
+    name: 'VIT Vellore',
+    shortName: 'VIT',
+    logoSrc: '/colleges/vit.svg',
+    imgClassName: 'max-h-9 sm:max-h-11 w-auto object-contain',
+  },
+  {
+    id: 'amity',
+    name: 'Amity University',
+    shortName: 'Amity Univ',
+    logoSrc: '/colleges/amity.png',
+    imgClassName: 'max-h-10 sm:max-h-12 w-auto object-contain',
+  },
+  {
+    id: 'nmims',
+    name: 'NMIMS University',
+    shortName: 'NMIMS',
+    logoSrc: '/colleges/nmims.png',
+    imgClassName: 'max-h-10 sm:max-h-12 w-auto object-contain',
+  },
+];
 
 export const TrustCollegeAvatars: React.FC = () => {
-  const colleges = [
-    { color: '#475569', label: 'IIT Delhi / Bombay' },
-    { color: '#E11D48', label: 'BITS Pilani' },
-    { color: '#B91C1C', label: 'NIT Trichy / Surathkal' },
-    { color: '#0284C7', label: 'Delhi University' },
-    { color: '#059669', label: 'IISc Bangalore' },
-    { color: '#9333EA', label: 'VIT / SRM' },
-  ];
+  const [imgErrors, setImgErrors] = useState<Record<string, boolean>>({});
+
+  const handleImageError = (id: string) => {
+    setImgErrors((prev) => ({ ...prev, [id]: true }));
+  };
 
   return (
-    <div className="flex flex-col items-start gap-2.5 pt-4 sm:pt-6 border-t border-[#E2E8F0] mt-6 sm:mt-8 w-full">
-      <div className="text-xs sm:text-[13px] text-[#475569] font-medium">
+    <div className="flex flex-col items-start gap-3 pt-4 sm:pt-6 border-t border-[#E2E8F0] mt-6 sm:mt-8 w-full max-w-full overflow-hidden">
+      {/* Section Heading */}
+      <div className="text-xs sm:text-[13px] text-[#475569] font-medium leading-tight">
         Trusted by <strong className="text-[#2563FF] font-bold">25,000+</strong> students from top colleges
       </div>
 
-      {/* 6 College Seals + "+30" pill */}
-      <div className="flex items-center gap-1.5 sm:gap-2">
-        {colleges.map((col, idx) => (
-          <CollegeSeal key={idx} color={col.color} label={col.label} />
+      {/* ========================================================================= */}
+      {/* DESKTOP / TABLET: 6-Card Balanced Horizontal Row                         */}
+      {/* ========================================================================= */}
+      <div className="hidden sm:grid sm:grid-cols-6 gap-2 sm:gap-2.5 w-full">
+        {COLLEGES.map((college) => (
+          <div
+            key={college.id}
+            title={college.name}
+            className="group relative bg-white rounded-xl border border-[#E2E8F0] shadow-[0_2px_10px_rgba(7,27,59,0.03)] hover:border-[#2563FF]/30 hover:shadow-[0_8px_20px_rgba(37,99,255,0.08)] transition-all duration-200 h-16 lg:h-18 p-2 flex items-center justify-center cursor-default select-none"
+          >
+            {!imgErrors[college.id] ? (
+              <img
+                src={college.logoSrc}
+                alt={college.name}
+                referrerPolicy="no-referrer"
+                onError={() => handleImageError(college.id)}
+                className={`transition-transform duration-200 group-hover:scale-105 ${college.imgClassName}`}
+              />
+            ) : (
+              <span className="text-[11px] font-bold text-[#071B3B] text-center leading-tight">
+                {college.shortName}
+              </span>
+            )}
+          </div>
         ))}
-        <div className="h-7 sm:h-8 px-2 rounded-full border border-[#CBD5E1] bg-white flex items-center justify-center text-[#475569] font-mono text-[10px] sm:text-[11px] font-bold shadow-2xs">
-          +30
+      </div>
+
+      {/* ========================================================================= */}
+      {/* MOBILE: Automatic Continuous Infinite Linear Marquee (Right -> Left)     */}
+      {/* ========================================================================= */}
+      <div className="block sm:hidden relative w-full overflow-hidden py-1">
+        {/* Subtle Fade Edge Masks */}
+        <div
+          className="pointer-events-none absolute left-0 top-0 bottom-0 w-8 z-10 bg-gradient-to-r from-[#F8F9FA] to-transparent"
+          aria-hidden="true"
+        />
+        <div
+          className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 z-10 bg-gradient-to-l from-[#F8F9FA] to-transparent"
+          aria-hidden="true"
+        />
+
+        {/* Continuous Seamless Scrolling Track */}
+        <div className="animate-infinite-marquee flex items-center gap-2.5">
+          {/* First Set of Logos */}
+          {COLLEGES.map((college) => (
+            <div
+              key={`marquee-1-${college.id}`}
+              className="shrink-0 w-[108px] h-14 bg-white rounded-xl border border-[#E2E8F0] shadow-[0_2px_8px_rgba(7,27,59,0.03)] p-1.5 flex items-center justify-center select-none"
+            >
+              {!imgErrors[college.id] ? (
+                <img
+                  src={college.logoSrc}
+                  alt={college.name}
+                  referrerPolicy="no-referrer"
+                  onError={() => handleImageError(college.id)}
+                  className="max-h-9 w-auto max-w-full object-contain"
+                />
+              ) : (
+                <span className="text-[10px] font-bold text-[#071B3B] text-center leading-tight">
+                  {college.shortName}
+                </span>
+              )}
+            </div>
+          ))}
+
+          {/* Duplicate Second Set of Logos for 100% Seamless Infinite Loop */}
+          {COLLEGES.map((college) => (
+            <div
+              key={`marquee-2-${college.id}`}
+              className="shrink-0 w-[108px] h-14 bg-white rounded-xl border border-[#E2E8F0] shadow-[0_2px_8px_rgba(7,27,59,0.03)] p-1.5 flex items-center justify-center select-none"
+            >
+              {!imgErrors[college.id] ? (
+                <img
+                  src={college.logoSrc}
+                  alt={college.name}
+                  referrerPolicy="no-referrer"
+                  onError={() => handleImageError(college.id)}
+                  className="max-h-9 w-auto max-w-full object-contain"
+                />
+              ) : (
+                <span className="text-[10px] font-bold text-[#071B3B] text-center leading-tight">
+                  {college.shortName}
+                </span>
+              )}
+            </div>
+          ))}
         </div>
       </div>
     </div>
