@@ -9,6 +9,7 @@ import { TrustCollegeAvatars } from '../components/ui/TrustCollegeAvatars';
 import { TrustMetricsBento } from '../components/ui/TrustMetricsBento';
 import { HowItWorksRoadmap } from '../components/sections/HowItWorksRoadmap';
 import { PremiumFinalCTA } from '../components/sections/PremiumFinalCTA';
+import { AnnouncementTickerStrip } from '../components/ui/AnnouncementTickerStrip';
 import {
   useGsapContext,
   animateHeroEntrance,
@@ -235,6 +236,11 @@ export const HomePage: React.FC = () => {
       {/* SECTION 5: FINAL CTA (Start Your Internship Journey Today)                */}
       {/* ========================================================================= */}
       <PremiumFinalCTA onExploreClick={scrollToPrograms} />
+
+      {/* ========================================================================= */}
+      {/* SECTION 6: ANNOUNCEMENT TICKER STRIP (Directly above footer)              */}
+      {/* ========================================================================= */}
+      <AnnouncementTickerStrip />
     </div>
   );
 };

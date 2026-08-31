@@ -198,6 +198,27 @@
   animation-play-state: paused;
 }
 
+/* Continuous Infinite Marquee for Announcement Ticker Strip */
+@keyframes infiniteTickerMarquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-ticker-marquee {
+  display: flex;
+  width: max-content;
+  animation: infiniteTickerMarquee 28s linear infinite;
+  will-change: transform;
+}
+
+.animate-ticker-marquee:hover {
+  animation-play-state: paused;
+}
+
 /* Subtle hairline borders & studio card depth */
 .studio-card-border {
   border: 1px solid #E2E8F0;
