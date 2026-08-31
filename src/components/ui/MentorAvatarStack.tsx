@@ -35,7 +35,7 @@ export const MentorAvatarStack: React.FC<MentorAvatarStackProps> = ({ className 
       aria-label="Educators and industry mentors"
     >
       {/* Overlapping Avatars Stack with +20 Badge */}
-      <div className="flex items-center -space-x-2 sm:-space-x-2.5 isolate py-1">
+      <div className="flex items-center -space-x-2 sm:-space-x-2.5 py-1.5 overflow-visible">
         {MENTOR_AVATARS.map((mentor, index) => {
           const isHovered = hoveredId === mentor.id;
           const imageUrl = getMentorImageUrl(mentor.src);
@@ -43,8 +43,8 @@ export const MentorAvatarStack: React.FC<MentorAvatarStackProps> = ({ className 
           return (
             <div
               key={mentor.id}
-              className="relative group/avatar"
-              style={{ zIndex: isHovered ? 40 : 20 - index }}
+              className="relative"
+              style={{ zIndex: isHovered ? 50 : 20 - index }}
               onMouseEnter={() => setHoveredId(mentor.id)}
               onMouseLeave={() => setHoveredId(null)}
             >
@@ -63,7 +63,7 @@ export const MentorAvatarStack: React.FC<MentorAvatarStackProps> = ({ className 
                     decoding="async"
                     referrerPolicy="no-referrer"
                     onError={() => handleImageError(mentor.id)}
-                    className="w-full h-full object-cover object-top"
+                    className="w-full h-full object-cover object-top pointer-events-none"
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center bg-[#E2E8F0] text-[#071B3B] text-[10px] font-bold">
@@ -72,19 +72,19 @@ export const MentorAvatarStack: React.FC<MentorAvatarStackProps> = ({ className 
                 )}
               </div>
 
-              {/* Minimal Clean Tooltip */}
+              {/* Minimal Clean Tooltip - fully visible and positioned directly above */}
               <div
-                className={`pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 rounded-md bg-[#0F172A] text-white text-[10.5px] font-medium tracking-tight whitespace-nowrap shadow-lg transition-all duration-150 z-50 ${
+                className={`pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2.5 py-1 rounded-md bg-[#0F172A] text-white text-[11px] font-semibold tracking-tight whitespace-nowrap shadow-xl border border-slate-700/60 transition-all duration-200 z-[100] ${
                   isHovered
-                    ? 'opacity-100 translate-y-0'
-                    : 'opacity-0 translate-y-1'
+                    ? 'opacity-100 translate-y-0 visible scale-100'
+                    : 'opacity-0 translate-y-1 invisible scale-95'
                 }`}
                 role="tooltip"
                 aria-hidden={!isHovered}
               >
                 {mentor.label}
                 {/* Micro tooltip arrow */}
-                <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#0F172A]" />
+                <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-[1px] border-4 border-transparent border-t-[#0F172A]" />
               </div>
             </div>
           );

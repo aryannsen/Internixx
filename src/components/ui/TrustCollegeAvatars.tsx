@@ -62,7 +62,7 @@ export const TrustCollegeAvatars: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-start gap-3 pt-4 sm:pt-6 border-t border-[#E2E8F0] mt-6 sm:mt-8 w-full max-w-full overflow-hidden">
+    <div className="flex flex-col items-start gap-3 pt-4 sm:pt-6 border-t border-[#E2E8F0] mt-6 sm:mt-8 w-full max-w-full">
       {/* Section Heading */}
       <div className="text-xs sm:text-[13px] text-[#475569] font-medium leading-tight">
         Trusted by <strong className="text-[#2563FF] font-bold">25,000+</strong> students from top colleges
