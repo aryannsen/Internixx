@@ -3,6 +3,7 @@ import { Breadcrumb } from '../components/ui/Breadcrumb';
 import { SectionHeading } from '../components/ui/SectionHeading';
 import { Button } from '../components/ui/Button';
 import { CTASection } from '../components/sections/CTASection';
+import { StudentStoriesSection } from '../components/sections/StudentStoriesSection';
 import { useRouter } from '../context/RouterContext';
 import { APPLICATION_FORM_URL } from '../config/site';
 import { Target, CheckCircle2, Shield, Sparkles, Code2, Users, ArrowRight } from 'lucide-react';
@@ -228,6 +229,9 @@ export const AboutPage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* Student Stories & Authentic Feedback */}
+      <StudentStoriesSection />
 
       <CTASection />
     </div>

@@ -163,6 +163,27 @@
   will-change: transform;
 }
 
+/* Continuous Infinite Marquee for Student Testimonial Cards */
+@keyframes infiniteStudentMarquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-student-marquee {
+  display: flex;
+  width: max-content;
+  animation: infiniteStudentMarquee 42s linear infinite;
+  will-change: transform;
+}
+
+.animate-student-marquee:hover {
+  animation-play-state: paused;
+}
+
 /* Subtle hairline borders & studio card depth */
 .studio-card-border {
   border: 1px solid #E2E8F0;
