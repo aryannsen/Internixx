@@ -127,8 +127,8 @@ export const Header: React.FC = () => {
                     onClick={() => handleNavClick(link.href)}
                     className={`transition-colors duration-150 cursor-pointer ${
                       active
-                        ? 'text-[#0048D9] font-semibold'
-                        : 'hover:text-[#0F172A]'
+                        ? 'text-[#2563FF] font-bold'
+                        : 'hover:text-[#071B3B]'
                     }`}
                   >
                     {link.label}
@@ -138,12 +138,12 @@ export const Header: React.FC = () => {
             </nav>
           </div>
 
-          {/* Right Side: Primary CTA */}
+          {/* Right Side Desktop: Primary CTA */}
           <div className="hidden md:flex items-center gap-5">
             <button
               type="button"
               onClick={() => handleNavClick('/verify')}
-              className="text-[12px] font-semibold text-[#64748B] hover:text-[#0F172A] transition-colors cursor-pointer"
+              className="text-[12px] font-semibold text-[#64748B] hover:text-[#071B3B] transition-colors cursor-pointer"
             >
               Verify Certificate
             </button>
@@ -152,32 +152,23 @@ export const Header: React.FC = () => {
               href={APPLICATION_FORM_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#0048D9] text-white px-4 py-2 rounded-xl text-[13px] font-semibold hover:bg-[#003BB3] transition-colors duration-150 inline-flex items-center gap-1.5 cursor-pointer shadow-xs"
+              className="bg-[#2563FF] text-white px-4 py-2 rounded-xl text-[13px] font-semibold hover:bg-[#1D8FFF] transition-colors duration-150 inline-flex items-center gap-1.5 cursor-pointer shadow-xs"
             >
               <span>Apply for Internship</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
             </a>
           </div>
 
-          {/* Mobile Actions: CTA + Hamburger */}
-          <div className="flex items-center gap-2 md:hidden">
-            <a
-              href={APPLICATION_FORM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-[#0048D9] text-white px-2.5 sm:px-3 py-1.5 rounded-lg text-[11px] sm:text-xs font-semibold hover:bg-[#003BB3] transition-colors inline-flex items-center gap-1 cursor-pointer whitespace-nowrap"
-            >
-              <span>Apply for Internship</span>
-            </a>
-
+          {/* Mobile Action: Compact Hamburger Only (No giant duplicate CTA in header) */}
+          <div className="flex items-center md:hidden">
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-1.5 text-[#0F172A] hover:bg-[#F1F3F5] border border-[#E2E8F0] rounded-lg focus:outline-none cursor-pointer"
+              className="p-2 text-[#0F172A] hover:bg-[#F1F3F5] active:bg-[#E2E8F0] border border-[#E2E8F0] rounded-xl focus:outline-none cursor-pointer transition-colors"
               aria-expanded={mobileMenuOpen}
               aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
             >
-              {mobileMenuOpen ? <X className="w-4 h-4 sm:w-5 sm:h-5" /> : <Menu className="w-4 h-4 sm:w-5 sm:h-5" />}
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
@@ -206,39 +197,76 @@ export const Header: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(false)}
-                className="p-1.5 text-[#64748B] hover:text-[#0F172A] border border-[#E2E8F0] rounded-lg"
+                className="p-2 text-[#64748B] hover:text-[#0F172A] border border-[#E2E8F0] rounded-xl cursor-pointer"
                 aria-label="Close menu"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            <nav className="flex flex-col gap-0.5">
-              {SITE_CONFIG.navLinks.map((link) => {
-                const active = isActive(link.href);
-                return (
-                  <button
-                    key={link.href}
-                    type="button"
-                    onClick={() => handleNavClick(link.href)}
-                    className={`mobile-nav-item flex items-center justify-between px-3 py-2.5 text-sm font-medium text-left transition-colors rounded-lg ${
-                      active
-                        ? 'text-[#0048D9] font-semibold bg-[#F1F3F5]'
-                        : 'text-[#0F172A] hover:bg-[#F1F3F5]'
-                    }`}
-                  >
-                    <span>{link.label}</span>
-                    <ArrowRight className="w-4 h-4 text-[#64748B]" />
-                  </button>
-                );
-              })}
+            <nav className="flex flex-col gap-1">
+              <button
+                type="button"
+                onClick={() => handleNavClick('/programs')}
+                className={`mobile-nav-item flex items-center justify-between px-3.5 py-2.5 text-sm font-medium text-left transition-colors rounded-xl ${
+                  isActive('/programs')
+                    ? 'text-[#2563FF] font-semibold bg-[#2563FF]/10'
+                    : 'text-[#071B3B] hover:bg-[#F1F3F5]'
+                }`}
+              >
+                <span>Programs</span>
+                <ArrowRight className="w-4 h-4 text-[#64748B]" />
+              </button>
+
+              <button
+                type="button"
+                onClick={() => handleNavClick('/how-it-works')}
+                className={`mobile-nav-item flex items-center justify-between px-3.5 py-2.5 text-sm font-medium text-left transition-colors rounded-xl ${
+                  isActive('/how-it-works')
+                    ? 'text-[#2563FF] font-semibold bg-[#2563FF]/10'
+                    : 'text-[#071B3B] hover:bg-[#F1F3F5]'
+                }`}
+              >
+                <span>How It Works</span>
+                <ArrowRight className="w-4 h-4 text-[#64748B]" />
+              </button>
+
+              <button
+                type="button"
+                onClick={() => handleNavClick('/about')}
+                className={`mobile-nav-item flex items-center justify-between px-3.5 py-2.5 text-sm font-medium text-left transition-colors rounded-xl ${
+                  isActive('/about')
+                    ? 'text-[#2563FF] font-semibold bg-[#2563FF]/10'
+                    : 'text-[#071B3B] hover:bg-[#F1F3F5]'
+                }`}
+              >
+                <span>About</span>
+                <ArrowRight className="w-4 h-4 text-[#64748B]" />
+              </button>
+
+              <button
+                type="button"
+                onClick={() => handleNavClick('/faq')}
+                className={`mobile-nav-item flex items-center justify-between px-3.5 py-2.5 text-sm font-medium text-left transition-colors rounded-xl ${
+                  isActive('/faq')
+                    ? 'text-[#2563FF] font-semibold bg-[#2563FF]/10'
+                    : 'text-[#071B3B] hover:bg-[#F1F3F5]'
+                }`}
+              >
+                <span>FAQ</span>
+                <ArrowRight className="w-4 h-4 text-[#64748B]" />
+              </button>
 
               <button
                 type="button"
                 onClick={() => handleNavClick('/verify')}
-                className="mobile-nav-item flex items-center justify-between px-3 py-2.5 text-sm font-medium text-left text-[#0F172A] hover:bg-[#F1F3F5] mt-1 border-t border-[#E2E8F0] pt-2.5 rounded-lg"
+                className={`mobile-nav-item flex items-center justify-between px-3.5 py-2.5 text-sm font-medium text-left transition-colors rounded-xl mt-1 border-t border-[#E2E8F0] pt-3 ${
+                  isActive('/verify')
+                    ? 'text-[#0048D9] font-semibold bg-[#0048D9]/8'
+                    : 'text-[#0F172A] hover:bg-[#F1F3F5]'
+                }`}
               >
-                <span>Verify a Certificate</span>
+                <span>Verify Certificate</span>
                 <ArrowRight className="w-4 h-4 text-[#64748B]" />
               </button>
             </nav>
@@ -248,13 +276,13 @@ export const Header: React.FC = () => {
                 href={APPLICATION_FORM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full bg-[#0048D9] text-white py-2.5 px-4 rounded-xl text-sm font-semibold text-center hover:bg-[#003BB3] transition-colors flex items-center justify-center gap-1.5"
+                className="w-full bg-[#0048D9] active:bg-[#003BB3] text-white py-3 px-4 rounded-xl text-sm font-semibold text-center transition-colors flex items-center justify-center gap-1.5 shadow-sm"
               >
                 <span>Apply for Internship</span>
                 <ArrowUpRight className="w-4 h-4" />
               </a>
-              <p className="text-[11px] text-center text-[#64748B]">
-                Online 4-week structured student programs
+              <p className="text-[11px] font-mono text-center text-[#64748B]">
+                100% Free Online Student Cohort
               </p>
             </div>
           </div>

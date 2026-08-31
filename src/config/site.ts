@@ -8,8 +8,8 @@ export const APPLICATION_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSf
 
 export const SITE_CONFIG = {
   name: "INTERNIX",
-  tagline: "Learn by building. Move forward with confidence.",
-  supportingMessage: "Practical programs designed to help students learn, build and develop real project experience.",
+  tagline: "Build skills. Gain practical experience.",
+  supportingMessage: "Project-based online internship programs designed to help students learn, build and grow.",
   description: "Internix is a modern student-focused platform offering structured online project and learning programs.",
   founder: "Aryan",
   founderTitle: "Founder, Internix",
@@ -21,16 +21,16 @@ export const SITE_CONFIG = {
   navLinks: [
     { label: "Programs", href: "/programs" },
     { label: "How It Works", href: "/how-it-works" },
-    { label: "About", href: "/about" },
+    { label: "Credentials", href: "/verify" },
     { label: "FAQ", href: "/faq" },
+    { label: "About Us", href: "/about" },
   ],
   footerLinks: {
     programs: [
-      { label: "Frontend Development", href: "/programs/frontend-development" },
-      { label: "Python Development", href: "/programs/python-development" },
+      { label: "Web Development", href: "/programs/frontend-development" },
       { label: "UI/UX Design", href: "/programs/ui-ux-design" },
-      { label: "Backend Development", href: "/programs/backend-development" },
-      { label: "Data Analysis", href: "/programs/data-analysis" },
+      { label: "Data Science", href: "/programs/data-analysis" },
+      { label: "Digital Marketing", href: "/programs/digital-marketing" },
     ],
     platform: [
       { label: "All Programs", href: "/programs" },
@@ -38,6 +38,7 @@ export const SITE_CONFIG = {
       { label: "About Internix", href: "/about" },
       { label: "Frequently Asked Questions", href: "/faq" },
       { label: "Verify a Certificate", href: "/verify" },
+      { label: "Brand & Logo System", href: "/brand" },
     ],
   },
 };

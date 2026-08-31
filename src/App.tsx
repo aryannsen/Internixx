@@ -9,6 +9,7 @@ import { HowItWorksPage } from './pages/HowItWorksPage';
 import { AboutPage } from './pages/AboutPage';
 import { FAQPage } from './pages/FAQPage';
 import { VerifyPage } from './pages/VerifyPage';
+import { BrandSystemPage } from './pages/BrandSystemPage';
 import { getProgramBySlug } from './data/programs';
 import { SITE_CONFIG } from './config/site';
 
@@ -37,6 +38,8 @@ const AppContent: React.FC = () => {
       document.title = `FAQ — ${SITE_CONFIG.name}`;
     } else if (path === '/verify') {
       document.title = `Verify Certificate — ${SITE_CONFIG.name}`;
+    } else if (path === '/brand' || path === '/logo-system') {
+      document.title = `Brand & Logo System — ${SITE_CONFIG.name}`;
     } else {
       document.title = `${SITE_CONFIG.name} — Learn by Building`;
     }
@@ -74,6 +77,10 @@ const AppContent: React.FC = () => {
 
     if (cleanPath === '/verify') {
       return <VerifyPage />;
+    }
+
+    if (cleanPath === '/brand' || cleanPath === '/logo-system') {
+      return <BrandSystemPage />;
     }
 
     // Default fallback

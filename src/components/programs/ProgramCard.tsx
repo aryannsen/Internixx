@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
-import { Clock, Globe, ArrowUpRight } from 'lucide-react';
+import { Clock, FolderKanban, ArrowRight, Code2, Layout, BarChart2, Megaphone } from 'lucide-react';
 import { Program } from '../../types';
-import { APPLICATION_FORM_URL } from '../../config/site';
+import { useRouter } from '../../context/RouterContext';
 import { setupDesktopCardHover } from '../../lib/motionSystem';
 
 export interface ProgramCardProps {
@@ -10,8 +10,48 @@ export interface ProgramCardProps {
   className?: string;
 }
 
-export const ProgramCard: React.FC<ProgramCardProps> = ({ program, index = 0, className = '' }) => {
+const getCategoryTheme = (category: string) => {
+  switch (category.toUpperCase()) {
+    case 'DEVELOPMENT':
+    case 'FRONTEND':
+      return {
+        icon: Code2,
+        iconBg: 'bg-[#2563FF]/10 text-[#2563FF]',
+        badgeBg: 'bg-[#2563FF]/10 text-[#2563FF]',
+      };
+    case 'DESIGN':
+    case 'UI/UX':
+      return {
+        icon: Layout,
+        iconBg: 'bg-[#059669]/10 text-[#059669]',
+        badgeBg: 'bg-[#059669]/10 text-[#059669]',
+      };
+    case 'DATA':
+      return {
+        icon: BarChart2,
+        iconBg: 'bg-[#9333EA]/10 text-[#9333EA]',
+        badgeBg: 'bg-[#9333EA]/10 text-[#9333EA]',
+      };
+    case 'MARKETING':
+      return {
+        icon: Megaphone,
+        iconBg: 'bg-[#EA580C]/10 text-[#EA580C]',
+        badgeBg: 'bg-[#EA580C]/10 text-[#EA580C]',
+      };
+    default:
+      return {
+        icon: FolderKanban,
+        iconBg: 'bg-[#2563FF]/10 text-[#2563FF]',
+        badgeBg: 'bg-[#2563FF]/10 text-[#2563FF]',
+      };
+  }
+};
+
+export const ProgramCard: React.FC<ProgramCardProps> = ({ program, className = '' }) => {
   const cardRef = useRef<HTMLElement | null>(null);
+  const { navigate } = useRouter();
+  const theme = getCategoryTheme(program.category);
+  const CategoryIcon = theme.icon;
 
   useEffect(() => {
     if (!cardRef.current) return;
@@ -23,62 +63,46 @@ export const ProgramCard: React.FC<ProgramCardProps> = ({ program, index = 0, cl
     <article
       ref={cardRef}
       id={`program-card-${program.slug}`}
-      data-reveal="card"
-      className={`program-card-item group bg-white rounded-2xl border border-[#E2E8F0] shadow-[0_1px_4px_rgba(15,23,42,0.04)] hover:border-[#0F172A] hover:shadow-[0_6px_20px_rgba(15,23,42,0.08)] transition-colors duration-200 flex flex-col justify-between p-6 sm:p-7 h-full will-change-transform ${className}`}
+      onClick={() => navigate(`/programs/${program.slug}`)}
+      className={`group bg-white rounded-2xl border border-[#E2E8F0] shadow-[0_4px_20px_rgba(7,27,59,0.04)] hover:border-[#2563FF]/40 hover:shadow-[0_16px_36px_-6px_rgba(37,99,255,0.12)] transition-all duration-200 flex flex-col justify-between p-5 sm:p-6 cursor-pointer will-change-transform ${className}`}
     >
       <div>
-        {/* Subtle Category & Free to Join Row */}
-        <div className="card-category flex items-center justify-between gap-2 mb-2.5">
-          <span className="text-[11px] font-bold text-[#64748B] uppercase tracking-[0.15em]">
-            {program.category}
-          </span>
-          <span className="text-[10px] font-bold text-[#0048D9] bg-[#0048D9]/8 border border-[#0048D9]/20 px-2 py-0.5 rounded-md tracking-wider uppercase select-none">
-            FREE TO JOIN
-          </span>
+        {/* Minimal Icon */}
+        <div className="mb-4">
+          <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${theme.iconBg}`}>
+            <CategoryIcon className="w-5 h-5" />
+          </div>
         </div>
 
-        {/* Program Title */}
-        <h3 className="card-title font-display text-2xl sm:text-[26px] font-bold text-[#0F172A] group-hover:text-[#0048D9] transition-colors tracking-tight leading-tight">
+        {/* Program Name */}
+        <h3 className="font-display text-[17px] sm:text-[18px] font-bold text-[#071B3B] group-hover:text-[#2563FF] transition-colors tracking-tight leading-snug">
           {program.name}
         </h3>
 
-        {/* 1–2 Line Description */}
-        <p className="card-desc mt-2.5 text-sm text-[#475569] leading-relaxed font-normal">
-          {program.tagline || program.description}
-        </p>
-
-        {/* Program Meta Row */}
-        <div className="card-meta mt-4 pt-3.5 border-t border-[#E2E8F0] flex items-center gap-4 text-xs font-semibold text-[#0F172A]">
-          <div className="flex items-center gap-1.5 text-[#334155]">
-            <Clock className="w-3.5 h-3.5 text-[#64748B] shrink-0" />
-            <span>{program.duration || '1 Month'}</span>
-          </div>
-          <span className="text-[#CBD5E1]">•</span>
-          <div className="flex items-center gap-1.5 text-[#334155]">
-            <Globe className="w-3.5 h-3.5 text-[#0048D9] shrink-0" />
-            <span>{program.mode || 'Online'}</span>
-          </div>
+        {/* Category Badge */}
+        <div className="mt-2 mb-3">
+          <span className={`inline-block text-[10px] font-mono font-bold px-2 py-0.5 rounded-md uppercase tracking-wider ${theme.badgeBg}`}>
+            {program.category}
+          </span>
         </div>
 
-        {/* Small Skills Line */}
-        {program.skills && program.skills.length > 0 && (
-          <div className="card-skills mt-3.5 text-xs text-[#64748B] font-medium tracking-tight">
-            {program.skills.join(' • ')}
-          </div>
-        )}
+        {/* Short Description */}
+        <p className="text-xs sm:text-[13px] text-[#475569] leading-relaxed font-normal">
+          {program.tagline || program.description}
+        </p>
       </div>
 
-      {/* Primary CTA */}
-      <div className="card-cta mt-6 pt-4 border-t border-[#E2E8F0]">
-        <a
-          href={APPLICATION_FORM_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-full bg-[#0048D9] hover:bg-[#003BB3] text-white py-3 px-4 rounded-xl text-sm font-semibold transition-colors duration-150 inline-flex items-center justify-center gap-2 cursor-pointer shadow-xs"
-        >
-          <span>Apply Now</span>
-          <ArrowUpRight className="card-arrow w-4 h-4 transition-transform duration-200" />
-        </a>
+      {/* Card Meta Footer */}
+      <div className="mt-5 pt-3.5 border-t border-[#F1F3F5] flex items-center justify-between text-[11px] sm:text-xs font-semibold text-[#64748B]">
+        <div className="flex items-center gap-1.5">
+          <Clock className="w-3.5 h-3.5 text-[#94A3B8]" />
+          <span>{program.duration || '4 Weeks'}</span>
+        </div>
+
+        <div className="flex items-center gap-1.5">
+          <FolderKanban className="w-3.5 h-3.5 text-[#94A3B8]" />
+          <span>Project Based</span>
+        </div>
       </div>
     </article>
   );

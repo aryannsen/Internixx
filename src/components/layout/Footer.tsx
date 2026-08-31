@@ -19,8 +19,8 @@ export const Footer: React.FC = () => {
       ref={footerRef}
       className="bg-[#0B1220] border-t border-[#1E293B] text-[#94A3B8] text-sm relative w-full overflow-hidden"
     >
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-12 py-12 sm:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-12 py-8 sm:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-12">
           {/* Brand Col */}
           <div className="footer-brand md:col-span-5 flex flex-col items-start">
             <BrandLogo
@@ -143,6 +143,16 @@ export const Footer: React.FC = () => {
                 >
                   <ShieldCheck className="w-3.5 h-3.5 text-[#3B82F6]" />
                   <span>Verify Certificate</span>
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => navigate('/brand')}
+                  className="text-[#94A3B8] hover:text-white transition-colors duration-150 text-left cursor-pointer inline-flex items-center gap-1.5"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#1D8FFF]" />
+                  <span>Brand & Logo System</span>
                 </button>
               </li>
               <li>
