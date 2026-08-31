@@ -24,15 +24,15 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
   return (
     <div className={`flex flex-col ${isCenter ? 'items-center text-center' : 'items-start text-left'} ${className}`}>
       {eyebrow && (
-        <span className="text-[#0055FF] font-bold text-[12px] tracking-[0.2em] uppercase mb-3 inline-block">
+        <span className="text-[#0048D9] font-bold text-[11px] sm:text-xs tracking-[0.2em] uppercase mb-2 sm:mb-3 inline-block">
           {eyebrow}
         </span>
       )}
       
       <TitleTag
-        className={`font-display font-extrabold text-[#1A1A1A] tracking-tight leading-[1.08] ${
+        className={`font-display font-extrabold text-[#0F172A] tracking-tight leading-[1.1] ${
           large
-            ? 'text-3xl sm:text-4xl md:text-5xl lg:text-[54px]'
+            ? 'text-3xl sm:text-4xl md:text-5xl lg:text-[52px]'
             : 'text-2xl sm:text-3xl md:text-4xl'
         }`}
       >
@@ -41,7 +41,7 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
 
       {description && (
         <p
-          className={`mt-3 sm:mt-4 text-base sm:text-lg text-[#4A4A4A] leading-relaxed font-normal ${
+          className={`mt-2.5 sm:mt-3.5 text-sm sm:text-base text-[#475569] leading-relaxed font-normal ${
             isCenter ? 'max-w-2xl mx-auto' : 'max-w-3xl'
           }`}
         >
